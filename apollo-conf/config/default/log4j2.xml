@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" status="warn" name="calypso" packages="">
+  <Properties>
+    <Property name="homeDirectory">logs</Property>
+  </Properties>
+  <Appenders>
+    <RollingFile name="CalypsoRollingFile" fileName="${homeDirectory}/apollo.log"
+                 filePattern="${homeDirectory}/$${date:yyyy-MM-dd}/apollo-%d{yyyy-MM-dd-HH}-%i.log.gz"
+                 append="true" immediateFlush="false" bufferedIO="true" bufferSize="8192">
+      <PatternLayout>
+        <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t %4p %30.30c] [%X] - %m%ex%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <OnStartupTriggeringPolicy/>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+      </Policies>
+    </RollingFile>
+    <Async name="ApolloAsync" bufferSize="512">
+      <AppenderRef ref="CalypsoRollingFile"/>
+    </Async>
+
+    <RollingFile name="ErrorRollingFile" fileName="${homeDirectory}/apollo_error.log"
+                 filePattern="${homeDirectory}/$${date:yyyy-MM-dd}/apollo_error-%d{yyyy-MM-dd-HH}-%i.log.gz"
+                 append="true" immediateFlush="true" bufferedIO="true" bufferSize="8192">
+      <PatternLayout>
+        <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t %4p %30.30c] [%X] - %m%ex%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <OnStartupTriggeringPolicy/>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+      </Policies>
+    </RollingFile>
+    <Async name="ErrorAsync" bufferSize="512">
+      <AppenderRef ref="ErrorRollingFile"/>
+    </Async>
+
+    <RollingFile name="ApolloTrace" fileName="${homeDirectory}/apollo-trace.log"
+                 filePattern="${homeDirectory}/$${date:yyyy-MM-dd}/apollo-trace-%d{yyyy-MM-dd}.log.gz"
+                 append="true" immediateFlush="true" bufferedIO="true" bufferSize="8192">
+      <PatternLayout>
+        <pattern>%d %p [%t] %m%n</pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+      </Policies>
+    </RollingFile>
+    <Async name="TraceAsync" bufferSize="512">
+      <AppenderRef ref="ApolloTrace"/>
+    </Async>
+
+    <RollingFile name="ApolloAudit" fileName="${homeDirectory}/apollo-audit.log"
+                 filePattern="${homeDirectory}/$${date:yyyy-MM-dd}/apollo-audit-%d{yyyy-MM-dd}.log.gz"
+                 append="true" immediateFlush="true" bufferedIO="true" bufferSize="8192">
+      <PatternLayout>
+        <pattern>%p %m%n</pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+      </Policies>
+    </RollingFile>
+    <Async name="AuditAsync" bufferSize="512">
+      <AppenderRef ref="ApolloAudit"/>
+    </Async>
+  </Appenders>
+
+  <Loggers>
+    <Root level="INFO">
+      <AppenderRef ref="ApolloAsync" level="INFO"/>
+      <AppenderRef ref="ErrorAsync" level="ERROR"/>
+    </Root>
+
+    <Logger name="ru.yamoney.calypso.apollo.helios.HeliosConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.statserver.StatServerConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.server.connector.cratossp.CratosSPConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yandex.money.may.transport.WalletConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.server.rest.restproxy.RestProxyCommand" level="info" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.oauth.OAuthConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.shiro.ShiroConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.fraudmachine.FmConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.calypso.deposit.CalypsoDepositConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.cratossp.CratosSPRESTConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.skrat.SkratConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.hafu.HafuConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.calypso.arm.ShopArmConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.calypso.bonus.CalypsoShopBonusConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.tcs.statistic.TCSStatsServiceConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.tcs.cards.TCSCardServiceConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.marketing.MarketingConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.audit.AuditorFilter" level="debug" additivity="false">
+      <AppenderRef ref="AuditAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.emit.EmitConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+
+    <Logger name="ru.yamoney.calypso.apollo.notifier.NotifierConnector" level="debug" additivity="false">
+      <AppenderRef ref="TraceAsync"/>
+    </Logger>
+  </Loggers>
+</Configuration>

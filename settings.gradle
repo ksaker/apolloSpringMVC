@@ -1,0 +1,5 @@
+rootProject.name = 'apollo'
+include 'apollo-core'
+include 'apollo-conf'
+include 'apollo-sms-inform'
+

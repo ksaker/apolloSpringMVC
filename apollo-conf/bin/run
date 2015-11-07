@@ -1,0 +1,5 @@
+#!bin/bash
+#Start apollo server with logging
+
+java -server -Dlog4j.configurationFile=/config/log4j2.xml \
+-jar apollo-0.0.1-SNAPSHOT.jar

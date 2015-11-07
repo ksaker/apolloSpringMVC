@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/apollo.iml" filepath="$PROJECT_DIR$/apollo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-conf/apollo-conf.iml" filepath="$PROJECT_DIR$/apollo-conf/apollo-conf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-core/apollo-core.iml" filepath="$PROJECT_DIR$/apollo-core/apollo-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-sms-inform/apollo-sms-inform.iml" filepath="$PROJECT_DIR$/apollo-sms-inform/apollo-sms-inform.iml" />
+    </modules>
+  </component>
+</project>
