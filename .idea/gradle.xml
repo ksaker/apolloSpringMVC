@@ -11,8 +11,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/apollo-conf" />
-            <option value="$PROJECT_DIR$/apollo-core" />
-            <option value="$PROJECT_DIR$/apollo-sms-inform" />
+            <option value="$PROJECT_DIR$/apollo-modules" />
+            <option value="$PROJECT_DIR$/apollo-modules/apollo-sms-inform" />
+            <option value="$PROJECT_DIR$/apollo-server" />
           </set>
         </option>
       </GradleProjectSettings>

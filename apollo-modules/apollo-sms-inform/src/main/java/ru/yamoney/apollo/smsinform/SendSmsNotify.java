@@ -1,5 +1,7 @@
+package ru.yamoney.apollo.smsinform;
+
 /**
- * SendSmsNotify
+ * ru.yamoney.apollo.smsinform.SendSmsNotify
  * <p>
  *      Send sms notify to user using notifier
  * </p>

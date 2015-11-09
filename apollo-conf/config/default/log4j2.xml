@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--To run this config application should be run with -Dlog4j.configurationFile=/config/log4j2.xml-->
 <Configuration monitorInterval="30" status="warn" name="calypso" packages="">
   <Properties>
     <Property name="homeDirectory">logs</Property>
   </Properties>
   <Appenders>
-    <RollingFile name="CalypsoRollingFile" fileName="${homeDirectory}/apollo.log"
+    <RollingFile name="ApolloRollingFile" fileName="${homeDirectory}/apollo.log"
                  filePattern="${homeDirectory}/$${date:yyyy-MM-dd}/apollo-%d{yyyy-MM-dd-HH}-%i.log.gz"
                  append="true" immediateFlush="false" bufferedIO="true" bufferSize="8192">
       <PatternLayout>
@@ -16,7 +17,7 @@
       </Policies>
     </RollingFile>
     <Async name="ApolloAsync" bufferSize="512">
-      <AppenderRef ref="CalypsoRollingFile"/>
+      <AppenderRef ref="ApolloRollingFile"/>
     </Async>
 
     <RollingFile name="ErrorRollingFile" fileName="${homeDirectory}/apollo_error.log"

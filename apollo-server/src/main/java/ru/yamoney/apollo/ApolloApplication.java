@@ -11,14 +11,20 @@ import ru.yamoney.apollo.conf.ApolloConfig;
 
 @SpringBootApplication
 @RestController
+@RequestMapping(value = "/test")
 public class ApolloApplication {
 
     Logger logger = LoggerFactory.getLogger(ApolloApplication.class);
 
-    @RequestMapping("/")
+    @RequestMapping("/testCmd")
     public String home() {
         logger.debug(config.getName());
         return config.getName();
+    }
+
+    @RequestMapping("/outer")
+    public String outer() {
+        return config.getOuter();
     }
 
     @Autowired

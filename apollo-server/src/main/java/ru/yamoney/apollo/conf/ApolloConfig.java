@@ -18,9 +18,18 @@ import org.springframework.stereotype.Component;
 public class ApolloConfig
 {
     private String name;
+    private String outer;
 
     public String getName() {
         return name;
+    }
+
+    public String getOuter() {
+        return outer;
+    }
+
+    public void setOuter(String outer) {
+        this.outer = outer;
     }
 
     public void setName(String name) {

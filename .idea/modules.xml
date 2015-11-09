@@ -4,8 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/apollo.iml" filepath="$PROJECT_DIR$/apollo.iml" />
       <module fileurl="file://$PROJECT_DIR$/apollo-conf/apollo-conf.iml" filepath="$PROJECT_DIR$/apollo-conf/apollo-conf.iml" />
-      <module fileurl="file://$PROJECT_DIR$/apollo-core/apollo-core.iml" filepath="$PROJECT_DIR$/apollo-core/apollo-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/apollo-sms-inform/apollo-sms-inform.iml" filepath="$PROJECT_DIR$/apollo-sms-inform/apollo-sms-inform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-modules/apollo-modules.iml" filepath="$PROJECT_DIR$/apollo-modules/apollo-modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-server/apollo-server.iml" filepath="$PROJECT_DIR$/apollo-server/apollo-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-modules/apollo-sms-inform/apollo-sms-inform.iml" filepath="$PROJECT_DIR$/apollo-modules/apollo-sms-inform/apollo-sms-inform.iml" />
     </modules>
   </component>
 </project>
