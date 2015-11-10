@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+    <xs:element name="getSmsInformDictionariesRequest">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Запрос на получение словарей]]></xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="dictionaryId" type="xs:normalizedString" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation><![CDATA[Список идентификаторов требуемых словарей:
+SMS_STATUS - статусы СМС
+NOTIFICATION_TYPE - типы уведомлений]]></xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,12 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
+    }
+}
+
+apply plugin: 'com.github.jacobono.jaxb'

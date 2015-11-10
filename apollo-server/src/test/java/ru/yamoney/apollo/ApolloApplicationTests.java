@@ -15,4 +15,9 @@ public class ApolloApplicationTests {
 	public void contextLoads() {
 	}
 
+	@Test
+	public void testMessageCodeResolver(){
+
+	}
+
 }

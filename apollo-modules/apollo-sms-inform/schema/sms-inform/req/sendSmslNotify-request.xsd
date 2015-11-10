@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../namespace/types.xsd"/>
+
+    <xs:element name="sendSmsNotifyRequest">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Запрос на отправку сообщения]]>
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="smsNotify" type="SmsNotify" minOccurs="1" maxOccurs="1" nillable="false"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

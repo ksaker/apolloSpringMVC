@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+    <xs:include schemaLocation="../namespace/types.xsd"/>
+    <xs:element name="getSmsMessagesRequest">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Набор фильтров для получения списка СМС сообщений]]></xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountFilter" type="AccountFilter" minOccurs="0"/>
+                <xs:element name="phoneFilter" type="PhoneFilter" minOccurs="0"/>
+                <xs:element name="timePeriodFilter" type="TimePeriodFilter" minOccurs="1"/>
+                <xs:element name="smsStatusFilter" type="SmsStatusFilter" minOccurs="0"/>
+                <xs:element name="smsTypeFilter" type="SmsTypeFilter" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

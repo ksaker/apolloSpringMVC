@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+
+    <xs:annotation>
+        <xs:documentation>
+            <![CDATA[Общие типы для функциональности по информированию об операциях]]></xs:documentation>
+    </xs:annotation>
+
+    <xs:simpleType name="PayCashAccount">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Номер счета в системе Яндекс.Деньги в полном формате]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:normalizedString">
+            <xs:minLength value="11"/>
+            <xs:maxLength value="33"/>
+            <xs:pattern value="[0-9]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PhoneNumber">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Номер телефона в формате ITU-T E.164]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:normalizedString">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="15"/>
+            <xs:pattern value="[0-9]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PhonePseudo">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Псевдономер телефона]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:normalizedString">
+            <xs:minLength value="40"/>
+            <xs:maxLength value="40"/>
+            <xs:pattern value="[0-9A-F]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Phone">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Данные телефона]]></xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="pseudo" use="required" type="PhonePseudo"/>
+        <xs:attribute name="number" use="optional" type="PhoneNumber">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[Поле реальный телефон присуствует, если у пользователя есть право]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="ResultData">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Результат обработки запроса]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation><![CDATA[Текстовое описание ошибки. Может отсутствовать]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="code" type="xs:int" use="required">
+            <xs:annotation>
+                <xs:documentation><![CDATA[Код ошибки:
+                0 - успех,
+                1 - техническая ошибка,
+                6 - слишком много записей]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:simpleType name="SmsStatusCode">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Статус сообщения
+                    0 - новое,
+                    1 - принято шлюзом,
+                    2 - принято провайдером,
+                    3 - не отправлено (ошибка при отправке),
+                    4 - доставлено,
+                    5 - не будет отправлено (например, код телефона не удовлетворяет требованиям)]]>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int"/>
+    </xs:simpleType>
+
+    <xs:complexType name="SmsStatus">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Статус СМС]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Текстовое описание статуса]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="color" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Цвет для статуса в виде A;R;G;B]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="code" type="SmsStatusCode">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[Код статуса]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:simpleType name="SmsMessageId">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Идентификатор СМС]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="NotificationTypeCode">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Тип уведомлений -
+                0 - пополнение счета,
+                1 - расходные операции,
+                2 - поступившие счета,
+                3 - служебные]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:int"/>
+    </xs:simpleType>
+
+    <xs:complexType name="NotificationType">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Тип уведомления]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="description" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Текстовое описание типа уведомления]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="code" type="NotificationTypeCode">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[Код типа уведомления]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+
+    </xs:complexType>
+
+    <xs:simpleType name="ProcessId">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Идентификатор связанного процесса, по которому было отправлено СМС]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:normalizedString"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="OperationId">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Идентификатор связанной операции, по которой было отправлено СМС]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:normalizedString"/>
+    </xs:simpleType>
+
+    <xs:complexType name="SmsMessage">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Сущность СМС]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="phone" type="Phone">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Номер телефона, на который отправлено сообщение]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="account" type="PayCashAccount">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Счет, с которым связано сообщение]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="typeCode" type="NotificationTypeCode">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Тип сообщения]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="text" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Текст сообщения]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="statusCode" type="SmsStatusCode">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Статус сообщения]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="sendTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Время отправки сообщения. Может отсутствовать.]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="updateTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Время обновления статуса сообщения (если СМС доставлена, то время доставки). Может отсутствовать.]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="processId" type="ProcessId" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Идентификатор процесса, по которому было отправлено сообщение. Может отсутствовать.]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="operationId" type="OperationId" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Идентификатор операции, по которой было отправлено сообщение. Может отсутствовать.]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="operationTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Время совершения операции, по которой было отправлено сообщение. Может отсутствовать.]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="SmsMessageId">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[Идентификатор СМС]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <!-- Фильтры -->
+
+    <xs:complexType name="AccountFilter">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Запрос номера телефона по счету пользователя]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="account" type="PayCashAccount">
+                <xs:annotation>
+                    <xs:documentation><![CDATA[Счет пользователя в системе Яндекс.Деньги]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PhoneFilter">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Запрос данных по номеру телефона, может быть определен только один параметр]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="number" type="PhoneNumber" minOccurs="0"/>
+            <xs:element name="pseudo" type="PhonePseudo" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TimePeriodFilter">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Условие отбора записей - период времени, включительно]]></xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="from" type="xs:dateTime" use="required"/>
+        <xs:attribute name="till" type="xs:dateTime" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="SmsTypeFilter">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Условие отбора записей - тип СМС]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="smsTypeCode" type="NotificationTypeCode" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SmsStatusFilter">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Условие отбора записей - статус СМС]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="smsStatusCode" type="SmsStatusCode" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Подписки -->
+
+    <xs:simpleType name="SubscriptionId">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Идентификатор подписки]]></xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:long"/>
+    </xs:simpleType>
+
+
+    <xs:complexType name="NotificationService">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Информация об услуге]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="stateChangeDate" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Дата изменения состояния услуги. Может отсутствовать.]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="notificationTypeCode" type="NotificationTypeCode">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[Код уведомления]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="active" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[Активна ли подписка на услугу]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="NotificationServices">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Информация об услугах]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="notificationService" type="NotificationService" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Subscription">
+        <xs:annotation>
+            <xs:documentation>
+                <![CDATA[Сущность "подписка"]]></xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="account" type="PayCashAccount">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Номер счета, на который оформлена подписка на услугу]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
+            <xs:element name="tillTime" type="xs:dateTime" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Дата окончания подписки. Может отсутствовать.]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="notificationServices" type="NotificationServices" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        <![CDATA[Информация об услугах]]></xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="SubscriptionId">
+            <xs:annotation>
+                <xs:documentation>
+                    <![CDATA[Идентификатор подписки]]></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+  <xs:complexType name="SmsNotify">
+    <xs:annotation>
+      <xs:documentation>
+        <![CDATA[Sms уведомление]]>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="requestId" type="xs:string" minOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>
+            <![CDATA[Уникальный идентификатор сообщения]]>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="phone" type="xs:string" minOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>
+            <![CDATA[Email адрес пользователя]]>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="text" type="xs:string" minOccurs="1" nillable="false">
+        <xs:annotation>
+          <xs:documentation>
+            <![CDATA[Текст уведомления]]>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

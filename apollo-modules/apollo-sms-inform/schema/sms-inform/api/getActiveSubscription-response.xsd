@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+    <xs:include schemaLocation="../namespace/types.xsd"/>
+    <xs:element name="getActiveSubscriptionResponse">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Результат на запрос активной подписки]]></xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="subscription" type="Subscription" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation><![CDATA[Данные активной подписки. Может отсутствовать.]]></xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="result" type="ResultData">
+                    <xs:annotation>
+                        <xs:documentation><![CDATA[Результат обработки запроса]]></xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

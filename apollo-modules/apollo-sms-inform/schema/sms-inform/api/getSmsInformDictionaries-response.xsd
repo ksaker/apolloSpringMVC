@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+    <xs:include schemaLocation="../namespace/types.xsd"/>
+    <xs:element name="getSmsInformDictionariesResponse">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Результат запроса на получение словарей]]></xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="smsStatuses" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[Словарь статусов СМС. Присутствует, если в запросе был указан идентификатор словаря SMS_STATUS]]></xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="smsStatus" type="SmsStatus" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="notificationTypes" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            <![CDATA[Словарь типов уведомлений. Присутствует, если в запросе был указан идентификатор словаря NOTIFICATION_TYPE]]></xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="notificationType" type="NotificationType" minOccurs="0"
+                                        maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="result" type="ResultData">
+                    <xs:annotation>
+                        <xs:documentation><![CDATA[Результат обработки запроса]]></xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

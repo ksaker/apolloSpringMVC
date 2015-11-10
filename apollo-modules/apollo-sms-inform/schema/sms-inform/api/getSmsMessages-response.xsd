@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+    <xs:include schemaLocation="../namespace/types.xsd"/>
+    <xs:element name="getSmsMessagesResponse">
+        <xs:annotation>
+            <xs:documentation><![CDATA[Ответ на запрос списка распоряжений]]></xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="smsMessages" type="SmsMessage" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation><![CDATA[Данные СМС]]></xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="result" type="ResultData">
+                    <xs:annotation>
+                        <xs:documentation><![CDATA[Результат обработки запроса]]></xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Platonov Alexey
  * @version 1.0 07.11.15
  */
-//TODO: Annotation ApolloController: @Restcontroller + @RequestMapping(value="appollo/webserivice/")
-//@ApolloController(value="/sms-inform")
-
 @RestController
 @RequestMapping(value = "/sms-inform")
 public class SmsInformController {
