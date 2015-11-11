@@ -4,10 +4,7 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/../apollo-core/src/main/java/ru/yamoney/apollo/ApolloApplication.java</file>
-          <file>file://$MODULE_DIR$/../apollo-core/src/main/java/ru/yamoney/apollo/conf/ApolloConfig.java</file>
-        </fileset>
-        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/ru/yamoney/apollo/conf/ApolloConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/ru/yamoney/apollo/ApolloApplication.java</file>
         </fileset>
       </configuration>

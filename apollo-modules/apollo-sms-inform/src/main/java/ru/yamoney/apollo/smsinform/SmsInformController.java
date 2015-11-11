@@ -1,13 +1,18 @@
 package ru.yamoney.apollo.smsinform;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import ru.yamoney.apollo.smsinform.gen.SendSmsNotifyRequest;
+import ru.yamoney.apollo.smsinform.gen.SendSmsNotifyResponse;
+
+import javax.validation.Valid;
 
 /**
  * ru.yamoney.apollo.smsinform.SmsInformController
  * <p>
- *  Sms inform module controller
+ *      Sms inform module controller
  * </p>
  *
  * @author Platonov Alexey
@@ -17,8 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/sms-inform")
 public class SmsInformController {
 
-    @RequestMapping(value = "/notify", method = RequestMethod.GET)
-    public void sendSmsNotify(){
+    @Autowired
+    @Qualifier(value = "sendSmsNotify")
+    IApolloCommand<SendSmsNotifyRequest, SendSmsNotifyResponse> command;
+
+    @RequestMapping(value = "/notify", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public SendSmsNotifyResponse sendSmsNotify(@Valid @RequestBody SendSmsNotifyRequest request){
         System.out.println("Notify send");
+        return command.execute(request);
     }
 }
