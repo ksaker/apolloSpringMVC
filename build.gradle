@@ -40,7 +40,10 @@ subprojects {
                 exclude module: 'spring-boot-starter-logging'
             }
             //compile('org.springframework.boot:spring-boot-starter-data-jpa')
-            //compile('org.springframework.boot:spring-boot-starter-security')
+            compile('org.springframework.boot:spring-boot-starter-security'){
+                exclude module: 'spring-boot-starter-logging'
+            }
+
             //TODO: check the cash
             compile('org.springframework.boot:spring-boot-starter-thymeleaf'){
                 exclude module: 'spring-boot-starter-logging'

@@ -1,10 +1,9 @@
-package ru.yamoney.apollo.smsinform;
+package ru.yamoney.apollo.modules.smsinform;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ru.yamoney.apollo.smsinform.gen.ResultData;
-import ru.yamoney.apollo.smsinform.gen.SendSmsNotifyRequest;
-import ru.yamoney.apollo.smsinform.gen.SendSmsNotifyResponse;
+import ru.yamoney.apollo.modules.smsinform.gen.SendSmsNotifyRequest;
+import ru.yamoney.apollo.modules.smsinform.gen.ResultData;
+import ru.yamoney.apollo.modules.smsinform.gen.SendSmsNotifyResponse;
 
 /**
  * ru.yamoney.apollo.smsinform.SendSmsNotify

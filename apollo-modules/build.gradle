@@ -1,4 +1,5 @@
 dependencies {
     compile project(':apollo-modules:apollo-sms-inform')
+    compile project(':apollo-modules:apollo-test')
 }
 

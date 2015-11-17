@@ -1,4 +1,4 @@
-package ru.yamoney.apollo.smsinform;
+package ru.yamoney.apollo.modules.smsinform;
 
 /**
  * ApolloCommand

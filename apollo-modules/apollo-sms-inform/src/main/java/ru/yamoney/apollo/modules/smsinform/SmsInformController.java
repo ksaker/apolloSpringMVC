@@ -1,11 +1,11 @@
-package ru.yamoney.apollo.smsinform;
+package ru.yamoney.apollo.modules.smsinform;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.yamoney.apollo.smsinform.gen.SendSmsNotifyRequest;
-import ru.yamoney.apollo.smsinform.gen.SendSmsNotifyResponse;
+import ru.yamoney.apollo.modules.smsinform.gen.SendSmsNotifyRequest;
+import ru.yamoney.apollo.modules.smsinform.gen.SendSmsNotifyResponse;
 
 import javax.validation.Valid;
 

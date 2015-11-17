@@ -1,6 +1,13 @@
 rootProject.name = 'apollo'
 include 'apollo-server'
 include 'apollo-conf'
-include 'apollo-modules:apollo-sms-inform'
 include 'apollo-modules'
+include 'apollo-modules:apollo-sms-inform'
+include 'apollo-modules:apollo-test'
+
+include 'apollo-services'
+include 'apollo-services:notifier'
+include 'apollo-services:common-service'
+
+//include 'schema'
 

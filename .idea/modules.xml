@@ -6,7 +6,12 @@
       <module fileurl="file://$PROJECT_DIR$/apollo-conf/apollo-conf.iml" filepath="$PROJECT_DIR$/apollo-conf/apollo-conf.iml" />
       <module fileurl="file://$PROJECT_DIR$/apollo-modules/apollo-modules.iml" filepath="$PROJECT_DIR$/apollo-modules/apollo-modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/apollo-server/apollo-server.iml" filepath="$PROJECT_DIR$/apollo-server/apollo-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-services/apollo-services.iml" filepath="$PROJECT_DIR$/apollo-services/apollo-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/apollo-modules/apollo-sms-inform/apollo-sms-inform.iml" filepath="$PROJECT_DIR$/apollo-modules/apollo-sms-inform/apollo-sms-inform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-modules/apollo-test/apollo-test.iml" filepath="$PROJECT_DIR$/apollo-modules/apollo-test/apollo-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-services/common-service/common-service.iml" filepath="$PROJECT_DIR$/apollo-services/common-service/common-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apollo-services/notifier/notifier.iml" filepath="$PROJECT_DIR$/apollo-services/notifier/notifier.iml" />
+      <module fileurl="file://$PROJECT_DIR$/schema/schema-portal.iml" filepath="$PROJECT_DIR$/schema/schema-portal.iml" />
     </modules>
   </component>
 </project>

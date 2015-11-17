@@ -15,15 +15,16 @@ dependencies {
     jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
     jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
     jaxb 'javax.xml.bind:jaxb-api:2.2.7'
+    compile ('org.apache.httpcomponents:httpclient:4.4')
 }
 
 System.setProperty('javax.xml.accessExternalSchema', 'file')
 
 jaxb {
     //TODO: How set the absoulte path for modules from parent project??
-    xsdDir = "apollo-modules/apollo-sms-inform/schema/sms-inform"
-    episodesDir = "apollo-modules/apollo-sms-inform/gen-src/episodes"
+    xsdDir = "schema/notifier/"
+    episodesDir = "apollo-services/notifier/gen-src/episodes"
     xjc {
-        generatePackage    = "ru.yamoney.apollo.modules.smsinform.gen"
+        generatePackage    = "ru.yamoney.apollo.services.notifier.gen"
     }
 }
